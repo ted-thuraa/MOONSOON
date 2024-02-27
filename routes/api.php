@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminPaymentsController;
 use App\Http\Controllers\Api\AdminUserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\HostelController;
+use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\SocialAuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Resources\UserResource;
@@ -30,13 +32,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::group(['middleware' => ['api']], function () {
-    
-    Route::get('google-login', [SocialAuthController::class, 'redirectToProvider']);
-    Route::post('google-login-token', [SocialAuthController::class, 'handlecallback']);
-    
 
-});
 
 
 
@@ -57,7 +53,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 //admin side
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
-    Route::get('/admin/users', [AdminUserController::class, 'index']);
-    Route::get('/admin/Payments', [AdminPaymentsController::class, 'index']);
     
+    Route::get('/admin/users', [AdminUserController::class, 'index']);
+    Route::get('/admin/getHostel', [HostelController::class, 'index']);
+    Route::post('/admin/newHostel', [HostelController::class, 'store']);
+    Route::delete('/admin/Hostel/{id}', [HostelController::class, 'destroy']);
+    
+    Route::get('/admin/getRoom/{id}', [RoomController::class, 'index']);
+    Route::post('/admin/newroom', [RoomController::class, 'store']);
+    Route::delete('/admin/room/{id}', [RoomController::class, 'destroy']);
 });

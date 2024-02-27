@@ -1,18 +1,28 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
-import LandingPage from "../views/LandingPage.vue";
+import LandingPage from "../views/Index.vue";
+import HostelView from "../views/HostelView.vue";
 import UserDashboard from "../views/Dashboard.vue";
 import AdminDash from "../views/Admin/Dashboard.vue";
+import Students from "../views/Admin/Students.vue";
+import Hostels from "../views/Admin/Hostels.vue";
+import Rooms from "../views/Admin/Rooms.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
+import AdminLayout from "../layouts/AdminLayout.vue";
 
 const routes = [
     {
         path: "/",
-        //redirect: "/index",
         name: "LandingPage",
         component: LandingPage,
-        //children: [{ path: "/index", name: "Landing", component: Landing }],
+        //meta: { isGuest: true },
+    },
+    {
+        path: "/hostel/:id",
+        name: "HostelView",
+        component: HostelView,
+        meta: { isGuest: true },
     },
 
     {
@@ -44,8 +54,30 @@ const routes = [
     {
         path: "/admin/dashboard",
         name: "AdminDash",
-        component: AdminDash,
+        component: AdminLayout,
         meta: { requiresAdmin: true, requiresAuth: true },
+        children: [
+            {
+                path: "/admin/dashboard",
+                name: "AdminDash",
+                component: AdminDash,
+            },
+            {
+                path: "/admin/students",
+                name: "Students",
+                component: Students,
+            },
+            {
+                path: "/admin/hostels",
+                name: "Hostels",
+                component: Hostels,
+            },
+            {
+                path: "/admin/hostel/:id/rooms",
+                name: "Rooms",
+                component: Rooms,
+            },
+        ],
     },
 ];
 
@@ -57,9 +89,9 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !store.state.user.token) {
         next({ name: "Login" });
     } else if (store.state.user.token && to.meta.isGuest) {
-        next({ name: "UserDashboard" });
+        next({ name: "LandingPage" });
     } else if (!store.state.user.isAdmin && to.meta.requiresAdmin) {
-        next({ name: "UserDashboard" });
+        next({ name: "LandingPage" });
     } else if (
         to.matched.some((record) => record.meta.requiresAuth) &&
         !store.state.user.token

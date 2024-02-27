@@ -339,7 +339,7 @@ const login = async (ev) => {
 
             loading.value = false;
             router.push({
-                name: "UserDashboard",
+                name: "LandingPage",
             });
             // } else {
             //   loading.value = false;

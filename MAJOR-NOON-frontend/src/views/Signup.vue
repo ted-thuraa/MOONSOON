@@ -175,59 +175,6 @@
                                                 <label
                                                     for="input-group-1"
                                                     class="block mb-2 text-sm font-medium text-gray-900"
-                                                    >name
-                                                </label>
-                                                <div class="relative mb-6">
-                                                    <div
-                                                        class="w-full items-center"
-                                                    >
-                                                        <input
-                                                            type="text"
-                                                            v-model="user.name"
-                                                            name="name"
-                                                            id="name"
-                                                            required=""
-                                                            autocomplete="name"
-                                                            placeholder="name"
-                                                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                                                        />
-                                                        <div v-if="message">
-                                                            <p
-                                                                v-if="
-                                                                    message.type ==
-                                                                    'success'
-                                                                "
-                                                                class="mt-2 text-sm text-green-600"
-                                                            >
-                                                                <span
-                                                                    class="font-medium"
-                                                                    >{{
-                                                                        message.text
-                                                                    }}</span
-                                                                >.
-                                                            </p>
-                                                            <p
-                                                                v-if="
-                                                                    message.type ==
-                                                                    'error'
-                                                                "
-                                                                class="mt-2 text-sm text-red-600"
-                                                            >
-                                                                <span
-                                                                    class="font-medium"
-                                                                    >{{
-                                                                        message.text
-                                                                    }}</span
-                                                                >
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full">
-                                                <label
-                                                    for="input-group-1"
-                                                    class="block mb-2 text-sm font-medium text-gray-900"
                                                     >Email
                                                 </label>
                                                 <div class="relative mb-6">
@@ -472,7 +419,6 @@ let loading = ref(false);
 const step = ref(1);
 
 const user = ref({
-    name: "",
     email: "",
     password: "",
     password_confirmation: "",
@@ -490,7 +436,7 @@ const register = async (ev) => {
             console.log(data);
             loading.value = false;
             router.push({
-                name: "UserDashboard",
+                name: "LandingPage",
             });
         })
         .catch((error) => {

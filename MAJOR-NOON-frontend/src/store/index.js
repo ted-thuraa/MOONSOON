@@ -32,48 +32,17 @@ const store = createStore({
             //token: 124,
         },
 
-        socialicons: {
-            loading: false,
-            data: [],
-        },
-
-        linkitems: {
-            loading: false,
-            data: [],
-        },
-        questionTypes: [
-            "text",
-            "select",
-            "radio",
-            "checkbox",
-            "input",
-            "textarea",
-            "email",
-            "date",
-        ],
-
-        //guest
-        guestpagedata: {
-            loading: false,
-            themeId: "",
-            data: [],
-        },
-
         //Admin
-        users: {
+        students: {
             loading: false,
             data: [],
         },
-        userToEdit: {
-            loading: false,
-            data: [],
-        },
-        plans: {
+        hostels: {
             loading: false,
             data: [],
         },
 
-        payments: {
+        rooms: {
             loading: false,
             data: [],
         },
@@ -149,6 +118,66 @@ const store = createStore({
         },
 
         //Admin
+        async getHostels({ commit }) {
+            await axiosClient.get("/admin/getHostel").then(({ data }) => {
+                //commit("setUserLoading", true);
+                console.log(data);
+                commit("setHostels", data.data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                //console.log(data);
+                return data;
+            });
+        },
+        async createNewHostel({ commit }, HostelDetails) {
+            await axiosClient
+                .post("/admin/newHostel", HostelDetails)
+                .then(({ data }) => {
+                    //commit("setUserLoading", true);
+                    console.log(data);
+                    commit("setHostels", data.data);
+                    //commit("setIsAdmin", data.user.isAdmin);
+                    //commit("setToken", data.token);
+                    //console.log(data);
+                    return data;
+                });
+        },
+        async deleteHostel({ dispatch }, id) {
+            await axiosClient.delete(`/admin/Hostel/${id}`).then(({ data }) => {
+                dispatch("getHostels");
+                return;
+            });
+        },
+        async getRooms({ commit }, id) {
+            await axiosClient.get(`/admin/getRoom/${id}`).then(({ data }) => {
+                //commit("setUserLoading", true);
+                console.log(data);
+                commit("setRooms", data.data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                //console.log(data);
+                return data;
+            });
+        },
+        async createNewRoom({ commit }, RoomDetails) {
+            await axiosClient
+                .post("/admin/newroom", RoomDetails)
+                .then(({ data }) => {
+                    //commit("setUserLoading", true);
+                    console.log(data);
+                    commit("setRoom", data.data);
+                    //commit("setIsAdmin", data.user.isAdmin);
+                    //commit("setToken", data.token);
+                    //console.log(data);
+                    return data;
+                });
+        },
+        async deleteRoom({ dispatch }, id) {
+            await axiosClient.delete(`/admin/room/${id}`).then(({ data }) => {
+                dispatch("getRooms");
+                return;
+            });
+        },
     },
     mutations: {
         logout: (state) => {
@@ -213,12 +242,14 @@ const store = createStore({
         },
 
         // admin mutations
-        // setUsersLoading: (state, loading) => {
-        //   state.users.loading = loading;
-        // },
-        // setUsers: (state, data) => {
-        //   state.users.data = data;
-        // },
+        setHostels: (state, data) => {
+            console.log(data);
+            state.hostels.data = data;
+        },
+        setRooms: (state, data) => {
+            console.log(data);
+            state.rooms.data = data;
+        },
     },
     persist: true,
     modules: {},

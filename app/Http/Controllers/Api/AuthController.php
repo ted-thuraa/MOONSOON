@@ -67,7 +67,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            //'name' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
@@ -75,12 +75,12 @@ class AuthController extends Controller
         try {
             $mailCode = sha1(time());
             $data = [
-                'name' => $request->name,
+                //'name' => $request->name,
                 'emailverification_code' => $mailCode,
                 
             ];
             $user = User::create([
-                'name' => $request->name,
+                //'name' => $request->name,
                 'email' => $request->email,
                 //'image' => 'creatorpageassets/user-placeholder.png',
                 'password' => Hash::make($request->password),
