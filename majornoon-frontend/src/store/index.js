@@ -33,16 +33,29 @@ const store = createStore({
         },
 
         //Admin
-        students: {
+        users: {
             loading: false,
             data: [],
+        },
+        analytics: {
+            loading: false,
+            data: {},
         },
         hostels: {
             loading: false,
             data: [],
         },
+        currentHostel: {
+            loading: false,
+            data: {},
+        },
 
         rooms: {
+            loading: false,
+            data: [],
+        },
+
+        reservations: {
             loading: false,
             data: [],
         },
@@ -63,7 +76,7 @@ const store = createStore({
                 commit("setUser", data.user);
                 commit("setIsAdmin", data.user.isAdmin);
                 commit("setToken", data.token);
-                this.dispatch("getUserTheme");
+
                 return data;
             });
         },
@@ -77,7 +90,7 @@ const store = createStore({
                     commit("setIsAdmin", data.user.isAdmin);
                     commit("setToken", data.token);
                     console.log(data.user);
-                    this.dispatch("getUserTheme");
+
                     return data;
                 })
                 .catch((error) => {
@@ -92,7 +105,7 @@ const store = createStore({
                 commit("setUser", data.user);
                 commit("setIsAdmin", data.user.isAdmin);
                 commit("setToken", data.token);
-                this.dispatch("getUserTheme");
+
                 return data;
             });
         },
@@ -117,12 +130,88 @@ const store = createStore({
             });
         },
 
+        async showHostels({ commit }) {
+            await axiosClient.get("/showHostel").then(({ data }) => {
+                //commit("setUserLoading", true);
+                console.log(data);
+                commit("setHostels", data.data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                //console.log(data);
+                return data;
+            });
+        },
+
+        async getHostel({ commit }, id) {
+            await axiosClient
+                .get(`/getCurrentHostel/${id}`)
+                .then(({ data }) => {
+                    //commit("setUserLoading", true);
+                    console.log(data);
+                    commit("setCurrentHostel", data.data);
+                    //commit("setIsAdmin", data.user.isAdmin);
+                    //commit("setToken", data.token);
+                    //console.log(data);
+                    return data;
+                });
+        },
+
+        async createReservation({ commit }, reservationDetails) {
+            return axiosClient
+                .post("/createreservation", reservationDetails)
+                .then(({ data }) => {
+                    //commit("setUserLoading", true);
+                    //commit("setUser", data.data);
+                    //commit("setIsAdmin", data.user.isAdmin);
+                    //commit("setToken", data.token);
+                    //console.log(data.data);
+
+                    return data;
+                });
+        },
+
         //Admin
+
+        async getAnalytics({ commit }) {
+            return axiosClient.get("/admin/analytics").then(({ data }) => {
+                //commit("setUserLoading", true);
+                commit("setAnalytics", data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                console.log(data.data);
+
+                return data;
+            });
+        },
+
+        async getUsers({ commit }) {
+            return axiosClient.get("/admin/users").then(({ data }) => {
+                commit("setUserLoading", true);
+                commit("setUsers", data.data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                console.log(data.data);
+
+                return data;
+            });
+        },
+
         async getHostels({ commit }) {
             await axiosClient.get("/admin/getHostel").then(({ data }) => {
                 //commit("setUserLoading", true);
                 console.log(data);
                 commit("setHostels", data.data);
+                //commit("setIsAdmin", data.user.isAdmin);
+                //commit("setToken", data.token);
+                //console.log(data);
+                return data;
+            });
+        },
+        async getReservations({ commit }) {
+            await axiosClient.get("/admin/getReservations").then(({ data }) => {
+                //commit("setUserLoading", true);
+                console.log(data);
+                commit("setReservations", data.data);
                 //commit("setIsAdmin", data.user.isAdmin);
                 //commit("setToken", data.token);
                 //console.log(data);
@@ -166,6 +255,19 @@ const store = createStore({
                     //commit("setUserLoading", true);
                     console.log(data);
                     commit("setRoom", data.data);
+                    //commit("setIsAdmin", data.user.isAdmin);
+                    //commit("setToken", data.token);
+                    //console.log(data);
+                    return data;
+                });
+        },
+        async assignRoom({ commit }, allocationDetails) {
+            await axiosClient
+                .post("/admin/assignroom", allocationDetails)
+                .then(({ data }) => {
+                    //commit("setUserLoading", true);
+                    console.log(data);
+                    //commit("setRoom", data.data);
                     //commit("setIsAdmin", data.user.isAdmin);
                     //commit("setToken", data.token);
                     //console.log(data);
@@ -242,13 +344,29 @@ const store = createStore({
         },
 
         // admin mutations
+        setUsers: (state, data) => {
+            console.log(data);
+            state.users.data = data;
+        },
         setHostels: (state, data) => {
             console.log(data);
             state.hostels.data = data;
         },
+        setCurrentHostel: (state, data) => {
+            console.log(data);
+            state.currentHostel.data = data;
+        },
         setRooms: (state, data) => {
             console.log(data);
             state.rooms.data = data;
+        },
+        setReservations: (state, data) => {
+            console.log(data);
+            state.reservations.data = data;
+        },
+        setAnalytics: (state, data) => {
+            console.log(data);
+            state.analytics.data = data;
         },
     },
     persist: true,

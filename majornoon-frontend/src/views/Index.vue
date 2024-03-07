@@ -421,9 +421,13 @@
                     <div
                         class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
                     >
-                        <a
+                        <router-link
                             v-for="hostel in store.state.hostels.data"
                             :key="hostel.id"
+                            :to="{
+                                name: 'HostelView',
+                                params: { id: hostel.id },
+                            }"
                             class="group"
                         >
                             <div
@@ -444,7 +448,7 @@
                             <p class="mt-1 text-lg font-medium text-gray-900">
                                 {{ hostel.billing }}
                             </p>
-                        </a>
+                        </router-link>
                     </div>
                 </section>
             </main>
@@ -469,7 +473,7 @@ import {
     TransitionChild,
     TransitionRoot,
 } from "@headlessui/vue";
-import { XMarkIcon } from "@heroicons/vue/24/outline";
+import { XMarkIcon, Bars3Icon } from "@heroicons/vue/24/outline";
 import {
     ChevronDownIcon,
     FunnelIcon,
@@ -485,7 +489,7 @@ const router = useRouter();
 onMounted(async () => {
     //loading.value = true;
     await store.dispatch("getUser");
-    await store.dispatch("getHostels");
+    await store.dispatch("showHostels");
 
     //loading.value = false;
 });

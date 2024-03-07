@@ -18,11 +18,13 @@ class RoomApplicationResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'hostel' => $this->hostel,
-            'roomtype' => $this->roomtype,
-            'allocated' => $this->allocated,
-            'startdate' => $this->startdate,
-            'enddate' => $this->enddate,
+            'user_name' => $this->user_name,
+            'hostel_id' => $this->hostel_id,
+            'hostel_name' => $this->hostel_name,
+            'room_type' => $this->room_type,
+            'status' => $this->status,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

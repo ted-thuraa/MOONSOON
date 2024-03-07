@@ -9,7 +9,7 @@
                         @click="openModal"
                         class="rounded-md bg-indigo-700 px-4 py-2 text-sm font-medium text-white hover:bg-indigo/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
                     >
-                        Add new room
+                        Add new User
                     </button>
                 </div>
                 <TransitionRoot appear :show="isOpen" as="template">
@@ -68,10 +68,10 @@
                                             as="h3"
                                             class="w-full text-center font-bold text-xl leading-6 text-gray-900"
                                         >
-                                            room details.
+                                            User details.
                                         </DialogTitle>
                                         <div class="mx-40 mt-20 mb-20">
-                                            <form @submit.prevent="saveroom">
+                                            <form @submit.prevent="saveUser">
                                                 <div class="space-y-12">
                                                     <div
                                                         class="border-b border-gray-900/10 pb-12"
@@ -83,21 +83,21 @@
                                                                 class="sm:col-span-3"
                                                             >
                                                                 <label
-                                                                    for="room_no"
+                                                                    for="first_name"
                                                                     class="block text-sm font-medium leading-6 text-gray-900"
-                                                                    >Room
-                                                                    No</label
+                                                                    >User first
+                                                                    name</label
                                                                 >
                                                                 <div
                                                                     class="mt-2"
                                                                 >
                                                                     <input
                                                                         v-model="
-                                                                            roomDetails.room_no
+                                                                            userDetails.firstname
                                                                         "
-                                                                        location="text"
-                                                                        name="room_no"
-                                                                        id="room_no"
+                                                                        type="text"
+                                                                        name="first_name"
+                                                                        id="first_name"
                                                                         autocomplete="given-name"
                                                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                                     />
@@ -107,72 +107,99 @@
                                                                 class="sm:col-span-3"
                                                             >
                                                                 <label
-                                                                    for="location"
+                                                                    for="last_name"
                                                                     class="block text-sm font-medium leading-6 text-gray-900"
-                                                                    >Room
-                                                                    Type</label
+                                                                    >Last
+                                                                    name</label
                                                                 >
                                                                 <div
                                                                     class="mt-2"
                                                                 >
-                                                                    <select
+                                                                    <input
                                                                         v-model="
-                                                                            roomDetails.room_type
+                                                                            userDetails.lastname
                                                                         "
-                                                                        id="room_type"
-                                                                        name="room_type"
-                                                                        autocomplete="family-name"
-                                                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                                    >
-                                                                        <option>
-                                                                            Single
-                                                                        </option>
-                                                                        <option>
-                                                                            Bedsitter
-                                                                        </option>
-                                                                        <option>
-                                                                            One
-                                                                            Bedroom
-                                                                        </option>
-                                                                        <option>
-                                                                            Two
-                                                                            Bedroom
-                                                                        </option>
-                                                                    </select>
+                                                                        type="text"
+                                                                        name="last_name"
+                                                                        id="last_name"
+                                                                        autocomplete="given-name"
+                                                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                                    />
                                                                 </div>
                                                             </div>
 
                                                             <div
                                                                 class="sm:col-span-3"
                                                             >
-                                                                <div
-                                                                    class="sm:col-span-3"
+                                                                <label
+                                                                    for="total_rooms"
+                                                                    class="block text-sm font-medium leading-6 text-gray-900"
                                                                 >
-                                                                    <label
-                                                                        for="billing"
-                                                                        class="block text-sm font-medium leading-6 text-gray-900"
-                                                                        >Room
-                                                                        billing</label
-                                                                    >
-                                                                    <div
-                                                                        class="mt-2 flex flex-row"
-                                                                    >
-                                                                        <input
-                                                                            v-model="
-                                                                                roomDetails.billing
-                                                                            "
-                                                                            name="billing"
-                                                                            id="billing"
-                                                                            type="number"
-                                                                            autocomplete="family-name"
-                                                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                                        />
-                                                                        <span
-                                                                            class="pl-2 text-gray-700 whitespace-nowrap"
-                                                                            >/
-                                                                            month</span
-                                                                        >
-                                                                    </div>
+                                                                    Email</label
+                                                                >
+                                                                <div
+                                                                    class="mt-2"
+                                                                >
+                                                                    <input
+                                                                        v-model="
+                                                                            userDetails.email
+                                                                        "
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="sm:col-span-3"
+                                                            >
+                                                                <label
+                                                                    for="password"
+                                                                    class="block text-sm font-medium leading-6 text-gray-900"
+                                                                    >Password</label
+                                                                >
+                                                                <div
+                                                                    class="mt-2 flex flex-row"
+                                                                >
+                                                                    <input
+                                                                        v-model="
+                                                                            userDetails.isAdmin
+                                                                        "
+                                                                        type="password"
+                                                                        name="password"
+                                                                        id="password"
+                                                                        autocomplete="current-password"
+                                                                        required=""
+                                                                        placeholder="password"
+                                                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="sm:col-span-3"
+                                                            >
+                                                                <label
+                                                                    for="password"
+                                                                    class="block text-sm font-medium leading-6 text-gray-900"
+                                                                    >Confirm
+                                                                    Password</label
+                                                                >
+                                                                <div
+                                                                    class="mt-2 flex flex-row"
+                                                                >
+                                                                    <input
+                                                                        v-model="
+                                                                            userDetails.password_confirmation
+                                                                        "
+                                                                        type="password"
+                                                                        name="confirmPassword"
+                                                                        id="confirmpassword"
+                                                                        required=""
+                                                                        autocomplete="current-password_confirm"
+                                                                        placeholder="Confirm password"
+                                                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                                    />
                                                                 </div>
                                                             </div>
 
@@ -182,8 +209,7 @@
                                                                 <legend
                                                                     class="text-sm font-semibold leading-6 text-gray-900"
                                                                 >
-                                                                    Available
-                                                                    for booking
+                                                                    Is Admin?
                                                                 </legend>
                                                                 <div
                                                                     class="mt-6 space-y-6"
@@ -196,10 +222,10 @@
                                                                         >
                                                                             <input
                                                                                 v-model="
-                                                                                    roomDetails.available
+                                                                                    userDetails.isAdmin
                                                                                 "
-                                                                                id="available"
-                                                                                name="available"
+                                                                                id="isadmin"
+                                                                                name="isadmin"
                                                                                 type="checkbox"
                                                                                 value=""
                                                                                 class="sr-only peer"
@@ -211,32 +237,14 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div
-                                                                class="sm:col-span-6"
-                                                            >
-                                                                <label
-                                                                    for="description"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900"
-                                                                    >description</label
-                                                                >
-                                                                <textarea
-                                                                    v-model="
-                                                                        roomDetails.description
-                                                                    "
-                                                                    id="description"
-                                                                    rows="4"
-                                                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                                                    placeholder="Write description here..."
-                                                                ></textarea>
-                                                            </div>
 
-                                                            <div
+                                                            <!-- <div
                                                                 class="sm:col-span-6"
                                                             >
                                                                 <label
                                                                     class="block text-sm font-medium text-gray-700"
                                                                 >
-                                                                    room image
+                                                                    User image
                                                                 </label>
                                                                 <div
                                                                     class="mt-1 w-full flex items-center"
@@ -249,7 +257,7 @@
                                                                             thumbnail_url
                                                                         "
                                                                         :alt="
-                                                                            roomDetails.room_name
+                                                                            UserDetails.User_name
                                                                         "
                                                                         class="w-64 h-48 object-cover"
                                                                     />
@@ -286,7 +294,7 @@
                                                                         Change
                                                                     </button>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -316,53 +324,44 @@
             >
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Image</th>
-                        <th scope="col" class="px-6 py-3">Room No</th>
-                        <th scope="col" class="px-6 py-3">Room Type</th>
-                        <th scope="col" class="px-6 py-3">Billing</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
-                        <th scope="col" class="px-6 py-3">action</th>
+                        <th scope="col" class="px-6 py-3">firstname</th>
+                        <th scope="col" class="px-6 py-3">lastname</th>
+                        <th scope="col" class="px-6 py-3">email</th>
+                        <th scope="col" class="px-6 py-3">isAdmin</th>
+                        <th scope="col" class="px-6 py-3">created at</th>
+                        <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        v-for="room in store.state.rooms.data"
-                        :key="room"
+                        v-for="User in store.state.users.data"
+                        :key="User"
                         class="bg-white border-b hover:bg-gray-50"
                     >
-                        <th
-                            scope="row"
-                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                        >
-                            <img
-                                class="w-10 h-10 rounded-full"
-                                :src="room.thumbnailimage"
-                                alt="room"
-                            />
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">
-                                    Neil Sims
-                                </div>
-                                <div class="font-normal text-gray-500">
-                                    neil.sims@flowbite.com
-                                </div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">{{ room.room_no }}</td>
-                        <td class="px-6 py-4">{{ room.room_type }}</td>
-                        <td class="px-6 py-4">{{ room.billing }}</td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
+                        <td class="px-4 py-4">{{ User.firstname }}</td>
+                        <td class="px-4 py-4">{{ User.lastname }}</td>
+                        <td class="px-4 py-4">{{ User.email }}</td>
+                        <td class="px-4 py-4">
+                            <div v-if="User.isAdmin" class="flex items-center">
                                 <div
                                     class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"
                                 ></div>
-                                Online
+                                true
+                            </div>
+                            <div v-else class="flex items-center">
+                                <div
+                                    class="h-2.5 w-2.5 rounded-full bg-gray-500 me-2"
+                                ></div>
+                                false
                             </div>
                         </td>
+                        <td class="px-4 py-4">{{ User.created_at }}</td>
 
-                        <td>
+                        <td
+                            class="px-4 py-4 flex-row items-center justify-center flex-nowrap"
+                        >
                             <a
-                                @click="editRoom(room)"
+                                @click="editUser(User)"
                                 class="font-medium text-indigo-600 hover:underline pl-2"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -379,12 +378,10 @@
                                     />
                                 </svg>
                             </a>
-
                             <a
-                                @click="deleteRoom(room)"
+                                @click="deleteUser(User)"
                                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                            >
-                                <svg
+                                ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -425,65 +422,40 @@ const router = useRouter();
 
 let thumbnail_url = ref(null);
 
-const roomDetails = {
-    hostel_id: null,
-    hostel_name: "",
-    available: false,
-    room_type: "",
-    room_no: "",
-    description: "",
-    billing: "",
-    thumbnailimage: null,
+const userDetails = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    isAdmin: false,
 };
-
-if (route.params.id) {
-    roomDetails.hostel_id = route.params.id;
-}
 
 onMounted(async () => {
     //loading.value = true;
     await store.dispatch("getUser");
-    await store.dispatch("getRooms", route.params.id);
+    await store.dispatch("getUsers");
 });
 
-function onImageChange(ev) {
-    //get the first one
-    const file = ev.target.files[0];
-
-    //file preview
-    const reader = new FileReader();
-    reader.onload = () => {
-        //field tosend to backend
-        roomDetails.thumbnailimage = reader.result;
-
-        //field for the preview
-        thumbnail_url.value = reader.result;
-    };
-    reader.readAsDataURL(file);
-}
-
-function editRoom(room) {
-    roomDetails.room_name = room.room_name;
-    roomDetails.location = room.location;
-    roomDetails.available = room.available;
-    roomDetails.description = room.description;
-    roomDetails.room_type = room.room_type;
-    roomDetails.room_no = room.room_no;
-    roomDetails.billing = room.billing;
-    thumbnail_url.value = room.thumbnailimage;
+function editUser(User) {
+    userDetails.firstname = User.firstname;
+    userDetails.lastname = User.lastname;
+    userDetails.email = User.email;
+    userDetails.isAdmin = User.isAdmin ? true : false;
+    //thumbnail_url.value = room.thumbnailimage;
 
     isOpen.value = true;
 }
-const saveroom = async (ev) => {
+const saveUser = async (ev) => {
     //loading.value = true;
     //errorMsg.value = null;
     ev.preventDefault();
     //await userStore.getTokens();
     await store
-        .dispatch("createNewRoom", roomDetails)
+        .dispatch("createNewUser", userDetails)
         .then((data) => {
             console.log(data);
-            store.dispatch("getRooms", route.params.id);
+            store.dispatch("getUsers");
             closeModal();
             //loading.value = false;
             // router.push({
@@ -495,9 +467,9 @@ const saveroom = async (ev) => {
         });
 };
 
-function deleteRoom(room) {
+function deleteUser(User) {
     if (confirm(`Are you sure, this cant be undone!`)) {
-        store.dispatch("deleteRoom", room.id).then(() => {
+        store.dispatch("deleteUser", User.id).then(() => {
             closeModal();
         });
     }
@@ -507,14 +479,12 @@ const isOpen = ref(false);
 
 function closeModal() {
     isOpen.value = false;
-    roomDetails.room_name = "";
-    roomDetails.room_no = "";
-    roomDetails.location = "";
-    roomDetails.available = "";
-    roomDetails.description = "";
-    roomDetails.total_rooms = "";
-    roomDetails.billing = "";
-    thumbnail_url.value = null;
+    userDetails.firstname = "";
+    userDetails.lastname = "";
+    userDetails.email = "";
+    userDetails.isAdmin = "";
+
+    //thumbnail_url.value = null;
 }
 function openModal() {
     isOpen.value = true;

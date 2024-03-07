@@ -4,8 +4,9 @@ import LandingPage from "../views/Index.vue";
 import HostelView from "../views/HostelView.vue";
 import UserDashboard from "../views/Dashboard.vue";
 import AdminDash from "../views/Admin/Dashboard.vue";
-import Students from "../views/Admin/Students.vue";
+import users from "../views/Admin/Users.vue";
 import Hostels from "../views/Admin/Hostels.vue";
+import Reservations from "../views/Admin/Reservations.vue";
 import Rooms from "../views/Admin/Rooms.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
@@ -22,7 +23,7 @@ const routes = [
         path: "/hostel/:id",
         name: "HostelView",
         component: HostelView,
-        meta: { isGuest: true },
+        meta: { requiresAuth: true },
     },
 
     {
@@ -63,9 +64,9 @@ const routes = [
                 component: AdminDash,
             },
             {
-                path: "/admin/students",
-                name: "Students",
-                component: Students,
+                path: "/admin/users",
+                name: "users",
+                component: users,
             },
             {
                 path: "/admin/hostels",
@@ -76,6 +77,11 @@ const routes = [
                 path: "/admin/hostel/:id/rooms",
                 name: "Rooms",
                 component: Rooms,
+            },
+            {
+                path: "/admin/reservations",
+                name: "Reservations",
+                component: Reservations,
             },
         ],
     },

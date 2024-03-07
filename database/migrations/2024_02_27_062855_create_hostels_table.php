@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('hostels', function (Blueprint $table) {
             $table->id();
-            $table->string('hostel_name');
+            $table->string('hostel_name')->unique();
             $table->string('location');
             $table->boolean('available')->default(false);
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedInteger('total_rooms');
             $table->unsignedInteger('billing');
             $table->text('thumbnailimage')->nullable();

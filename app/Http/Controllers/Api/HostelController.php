@@ -26,6 +26,16 @@ class HostelController extends Controller
         }
         
     }
+    public function getHostel($id)
+    {
+        try {
+            $hostel = Hostel::findOrFail($id); // Use findOrFail to retrieve a hostel by its ID
+            return new HostelResource($hostel); // Instantiate HostelResource with the retrieved hostel
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+        
+    }
 
     
 
@@ -147,7 +157,7 @@ class HostelController extends Controller
 
     // Client
 
-    public function getHostel()
+    public function filterHostels()
     {
         try {
             $allHostel = HostelResource::collection(Hostel::paginate());

@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('room_applications', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class, 'user_id')->onDelete('cascade');
-            $table->string('hostel')->nullable();
-            $table->string('roomtype')->nullable();
-            $table->boolean('allocated')->default(false);
-            $table->timestamp('startdate')->nullable();
-            $table->timestamp('enddate')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('hostel_id')->nullable();
+            $table->string('hostel_name')->nullable();
+            $table->string('status')->default('Pending')->nullable();
+            $table->string('room_type')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
         });
     }

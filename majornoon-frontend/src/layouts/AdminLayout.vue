@@ -28,18 +28,15 @@
                                 ></path>
                             </svg>
                         </button>
-                        <a
-                            href="https://flowbite.com"
-                            class="flex ms-2 md:me-24"
-                        >
+                        <a href="" class="flex ms-2 md:me-24">
                             <img
-                                src="https://flowbite.com/docs/images/logo.svg"
+                                src="../assets/vue.svg"
                                 class="h-8 me-3"
                                 alt="FlowBite Logo"
                             />
                             <span
                                 class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap"
-                                >Eduguid admin</span
+                                >Majornoon admin</span
                             >
                         </a>
                     </div>
@@ -150,7 +147,7 @@
                     </li>
                     <li>
                         <router-link
-                            :to="{ name: 'Students' }"
+                            :to="{ name: 'users' }"
                             class="flex items-center p-2 text-gray-900 rounded-lg"
                         >
                             <svg
@@ -165,7 +162,7 @@
                                 />
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap"
-                                >Students</span
+                                >Users</span
                             >
                         </router-link>
                     </li>
@@ -192,6 +189,32 @@
 
                             <span class="flex-1 ms-3 whitespace-nowrap"
                                 >Hostels</span
+                            >
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link
+                            :to="{ name: 'Reservations' }"
+                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                            >
+                                <path
+                                    d="M19.006 3.705a.75.75 0 1 0-.512-1.41L6 6.838V3a.75.75 0 0 0-.75-.75h-1.5A.75.75 0 0 0 3 3v4.93l-1.006.365a.75.75 0 0 0 .512 1.41l16.5-6Z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.019 11.114 18 5.667v3.421l4.006 1.457a.75.75 0 1 1-.512 1.41l-.494-.18v8.475h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3v-9.129l.019-.007ZM18 20.25v-9.566l1.5.546v9.02H18Zm-9-6a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75H9Z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+
+                            <span class="flex-1 ms-3 whitespace-nowrap"
+                                >Reservations</span
                             >
                         </router-link>
                     </li>

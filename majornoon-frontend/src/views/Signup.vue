@@ -10,10 +10,10 @@
                 <div class="flex lg:flex-1">
                     <a href="/" class="inline-flex items-center -m-1.5 p-1.5">
                         <v-lazy-image :src="Logo" class="h-10 w-auto" />
-                        <span class="sr-only">Creatorpage</span>
+                        <span class="sr-only">Majornoon</span>
 
                         <span class="m-1.5 p-2.5 text-black font-semibold"
-                            >Creatorpage</span
+                            >Majornoon</span
                         >
                     </a>
                 </div>

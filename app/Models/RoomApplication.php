@@ -17,10 +17,12 @@ class RoomApplication extends Model
     protected $fillable = [
         
         'user_id',
-        'hostel',
-        'roomtype',
-        'allocated',
-        'startdate',
-        'enddate',
+        'user_name',
+        'hostel_id',
+        'hostel_name',
+        'room_type',
+        'status',
+        'start_date',
+        'end_date',
     ];
 }
